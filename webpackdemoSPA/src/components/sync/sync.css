@@ -1,0 +1,7 @@
+.test {
+  --fontColor: yellowgreen;
+  color: var(--fontColor);
+}
+
+.sync-test-ss23 {
+}

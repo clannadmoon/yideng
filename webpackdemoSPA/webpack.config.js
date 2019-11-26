@@ -1,0 +1,64 @@
+const path = require("path");
+const glob = require("globs");
+const PurifyCSSPlugin = require("purifycss-webpack");
+const WebpackDeepScopeAnalysisPlugin = require("webpack-deep-scope-plugin")
+  .default;
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const argv = require("yargs-parser")(process.argv.slice(2));
+const merge = require("webpack-merge");
+const _mode = argv.mode || "development";
+const _modeflag = _mode == "production" ? true : false;
+const _mergeConfig = require(`./config/webpack.${_mode}.js`);
+
+const setItem2Badge = require("set-iterm2-badge");
+setItem2Badge("周鹏开发环境");
+webpackConfig = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPatch: "../"
+            }
+          },
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                mode: "local",
+                localIdentName: "[local]"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  plugins: [
+    new WebpackDeepScopeAnalysisPlugin(),
+
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // all options are optional
+      filename: _modeflag ? "styles/[name].[hash:5].css" : "styles/[name].css",
+      chunkFilename: _modeflag ? "styles/[id].[hash:5].css" : "styles/[id].css",
+      ignoreOrder: false // Enable to remove warnings about conflicting order
+    }),
+    new HtmlWebpackPlugin({
+      filename: "index.html",
+      template: "src/index.html"
+    }),
+    new CleanWebpackPlugin(),
+    new PurifyCSSPlugin({
+      // Give paths to parse for rules. These should be absolute!
+      paths: glob.sync(path.join(__dirname, "./dist/*.html"))
+    })
+  ]
+};
+
+module.exports = merge(_mergeConfig, webpackConfig);
