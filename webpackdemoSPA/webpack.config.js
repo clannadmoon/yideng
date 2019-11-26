@@ -39,6 +39,35 @@ webpackConfig = {
       }
     ]
   },
+  devServer: {
+    port: "3000",
+    hot: true,
+    before(app) {
+      app.get("/api/test", (req, res) => {
+        res.json({
+          code: 200,
+          message: "Hello World"
+        });
+      });
+    }
+  },
+  optimization: {
+    // async 异步(import()语法) initial(同步import xxx from 'xxx') all(所有)
+    splitChunks: {
+      chunks: "initial",
+      name: "common",
+      minChunks: 1,
+      maxInitialRequests: 5,
+      minSize: 0,
+
+      cacheGroups: {
+        //commons: "initial",
+      }
+    },
+    runtimeChunk: {
+      name: "runtime"
+    }
+  },
   plugins: [
     new WebpackDeepScopeAnalysisPlugin(),
 
