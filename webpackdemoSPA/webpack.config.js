@@ -12,8 +12,22 @@ const _mode = argv.mode || "development";
 const _modeflag = _mode == "production" ? true : false;
 const _mergeConfig = require(`./config/webpack.${_mode}.js`);
 
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+const smp = new SpeedMeasurePlugin();
+
+var WebpackBuildNotifierPlugin = require("webpack-build-notifier");
+
+var ProgressBarPlugin = require("progress-bar-webpack-plugin");
+var DashboardPlugin = require("webpack-dashboard/plugin");
+const setTitle = require("node-bash-title");
+setTitle("🍻  Server");
 const setItem2Badge = require("set-iterm2-badge");
 setItem2Badge("周鹏开发环境");
+
+var ManifestPlugin = require("webpack-manifest-plugin");
+const loading = {
+  html: "加载中"
+};
 webpackConfig = {
   module: {
     rules: [
@@ -69,7 +83,15 @@ webpackConfig = {
     }
   },
   plugins: [
-    new WebpackDeepScopeAnalysisPlugin(),
+    new ManifestPlugin(),
+    new DashboardPlugin(),
+    new ProgressBarPlugin(),
+    new WebpackBuildNotifierPlugin({
+      title: "wepack SPA",
+      logo: path.resolve("./img/favicon.png"),
+      suppressSuccess: true
+    }),
+    //new WebpackDeepScopeAnalysisPlugin(),
 
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
@@ -80,7 +102,8 @@ webpackConfig = {
     }),
     new HtmlWebpackPlugin({
       filename: "index.html",
-      template: "src/index.html"
+      template: "src/index.html",
+      loading: loading
     }),
     new CleanWebpackPlugin(),
     new PurifyCSSPlugin({
@@ -90,4 +113,4 @@ webpackConfig = {
   ]
 };
 
-module.exports = merge(_mergeConfig, webpackConfig);
+module.exports = smp.wrap(merge(_mergeConfig, webpackConfig));

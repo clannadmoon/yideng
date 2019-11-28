@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development ",
+    "dev": "webpack-dashboard -- webpack --mode development ",
     "pro": "webpack --mode production ",
+    "dev:chart": "webpack --mode development --profile --json > stats.json",
     "dev:server": "webpack-dev-server --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,19 +18,27 @@
     "globs": "^0.1.4",
     "html-webpack-plugin": "^3.2.0",
     "lodash-es": "^4.17.15",
+    "node-bash-title": "0.0.2",
     "path": "^0.12.7",
     "set-iterm2-badge": "0.0.4",
     "style-loader": "^1.0.0",
     "webpack": "^4.41.2",
+    "webpack-build-notifier": "^2.0.0",
     "webpack-cli": "^3.3.10",
     "webpack-deep-scope-plugin": "^1.6.2",
     "webpack-dev-server": "^3.9.0",
     "webpack-merge": "^4.2.2",
+    "webpack-parallel-uglify-plugin": "^1.1.2",
     "yargs-parser": "^16.1.0"
   },
   "devDependencies": {
     "mini-css-extract-plugin": "^0.8.0",
+    "progress-bar-webpack-plugin": "^1.12.1",
     "purify-css": "^1.2.5",
-    "purifycss-webpack": "^0.7.0"
+    "purifycss-webpack": "^0.7.0",
+    "speed-measure-webpack-plugin": "^1.3.1",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack-dashboard": "^3.2.0",
+    "webpack-manifest-plugin": "^2.2.0"
   }
 }

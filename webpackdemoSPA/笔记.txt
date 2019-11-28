@@ -1,0 +1,26 @@
+webpack优化打包
+
+=======开发阶段======
+1，开启多核压缩  uglifyjs-webpack-plugin
+2，开启编译时间监控面板 speed-measure-webpack-plugin
+3，开启通知面板 webpack-build-notifier
+4，开启打包进度 progress-bar-webpack-plugin
+5，开发面板更清晰 webpack-dashboard
+6，开启窗口标题 node-bash-title
+7，窗口打印更直接（可选）
+=======上线阶段======
+1，es6 不需要编译
+set map se9
+https://cdn.polyfill.io/v2/polyfill.min.js?features=Map,Set
+2，前端缓存的小负载  webapp
+    a.js -> a.xxx1.js
+    a.xxx.js  
+3，真正的loading （根据加载的js数量，显示图片显示进度）
+4，单页问题  多页转单页  webapp 性能 请求数量 runtime
+5，分析打包结果  CI 
+    bundlesize 生成包结构的json
+    用于可视化展示 http://webpack.github.io/analyse/或https://alexkuz.github.io/webpack-chart/
+6，test exculde  include 非常重要  很快
+7，压缩JS、CSS   ts-loader  optimize-css-assets-webpack-plugin
+8，devtool eval
+9，cache-loader
