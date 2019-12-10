@@ -1,0 +1,44 @@
+1,MPA  SPA
+网页 MPA是多页 SPA是单页
+vue-cli 构建单页应用 假的路由 history  pushstate
+vue-router
+
+ssr 后端组成 Java c# asp php 模版
+
+小项目 单页
+大项目 多页
+大项目-》 移动端 MPA-》SPA 可以通过header实现，单页和多页的互转
+
+2，打包工具
+rollup gulp grunt fis parcel webpack
+
+grunt -> io文件 速度慢 前端工程化
+gulp -> 流编程 打包 今天 小项目 nodejs 清洗
+fis -> 前后端都支持 工程化工具 上手百度内部
+rollup -> 有webpack2 无用的代码删除掉 tree shaking
+parcel -> webpack3 4
+
+3，webpack
+3-1 优化webpack
+3-2 webpack原理 
+
+4，spa-> mpa pre-render
+5，第三方的库 太大了
+6，px2rem
+7，webpack 创建的项目和vue-cli创建的项目有什么区别，怎么判断
+vue-cli 工具包 package.json
+8，排除包 angular
+9，CommonJS 规范 nodejs
+10，webpack 做热更新
+如果不带node使用dev-server
+带node，用livereload
+
+15，lint ast 抽象语法树 loader babel vue
+16，cdn cdn集群
+17，scoped style和tree-shaking
+    建议使用  css-nano 效验 空选择符 css-treeshaking
+18，express+swig+路由机制 jade/pug
+19，同构化 模版 express+ vue -> json文件 server-render
+    nuxt next
+20，JS基础过关
+
