@@ -13,6 +13,6 @@
     "ejs": "^3.0.1",
     "fs": "0.0.1-security",
     "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.12"
   }
 }
